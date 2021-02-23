@@ -48,12 +48,12 @@ nesse arquivo estão representados não como números, mas como
 strings)
 '''
 def data_de_um_jogo(dados, id_jogo):
-    if (id_jogo):
-        data = dados['fases']['2700']['id'][id_jogo]['data']
-        return data
-    else:
-        return 'nao encontrado'
-
+    for x in dados['fases']['2700']['jogos']['id']:
+        if (id_jogo == x):
+            data = dados['fases']['2700']['jogos']['id'][id_jogo]['data']
+            return data
+    
+    return 'não encontrado'
 '''
 3. Nos nossos dados, cada time tem um id, uma identificação 
 numérica. (você pode consultar as identificações numéricas 
@@ -72,21 +72,28 @@ def ids_dos_times_de_um_jogo(dados, id_jogo):
     em um único return.
 '''
 def ids_dos_times_de_um_jogo(dados, id_jogo):
-    pass
+    time1 = dados['fases']['2700']['jogos']['id'][id_jogo]['time1']
+    time2 = dados['fases']['2700']['jogos']['id'][id_jogo]['time2']
+    return time1, time2
 
 '''
 4. A próxima função recebe a id_numerica de um time e deve 
 retornar o seu 'nome-comum'.
 '''
 def nome_do_time(dados,id_time):
-    pass
+     nomeTime = dados['equipes'][id_time]['nome-comum']
+     return nomeTime
 
 '''
 5. A próxima função "cruza" as duas anteriores. Recebe uma id 
 de um jogo e retorna os "nome-comum" dos dois times.
 '''
 def nomes_dos_times_de_um_jogo(dados, id_jogo):
-    pass
+    idTime1 = dados['fases']['2700']['jogos']['id'][id_jogo]['time1']
+    idTime2 = dados['fases']['2700']['jogos']['id'][id_jogo]['time2']
+    nomeTime1 = dados['equipes'][idTime1]['nome-comum']
+    nomeTime2 = dados['equipes'][idTime2]['nome-comum']
+    return nomeTime1, nomeTime2
 
 '''
 6. Façamos agora a busca "ao contrário". Conhecendo
@@ -95,7 +102,12 @@ o nome-comum de um time, queremos saber a sua id.
 Se o nome comum não existir, retorne 'não encontrado'.
 '''
 def id_do_time(dados,nome_time):
-    pass
+    for x in dados['equipes']['nome-comum']:
+        if (nome_time == x):
+            idTime = dados['equipes']['id']
+            return idTime
+    
+    return 'não encontrado'
 
 '''
 7. Queremos procurar por 'Fla' e achar o Flamengo. 
