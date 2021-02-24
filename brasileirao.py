@@ -123,15 +123,51 @@ Sua resposta deve ser uma lista de ids de times que "batem"
 com a pesquisa (e pode ser vazia, se não achar ninguém).
 '''
 def busca_imprecisa_por_nome_de_time(dados,nome_time):
-    pass
+    nomeRecebido = list(nome_time)
+    nomeComum = list(dados['equipes']['nome-comum'])
+    nomeSlug = list(dados['equipes']['nome-slug'])
+    sigla = list(dados['equipes']['sigla'])
+    nome = list(dados['equipes']['nome'])
 
+    listaComum = []
+    listaSlug= []
+    listaSigla = []
+    listaNome = []
+    cont1 = 0
+    cont2 = 0
+    cont3 = 0
+    cont4 = 0
+    for x in nomeRecebido:
+        if nomeComum[cont1] == x:
+            listaComum.append(nomeComum[cont1])
+            cont1 +=1
+        elif nomeSlug[cont2] == x:
+            listaSlug.append(nomeSlug[cont2])
+            cont2 +=1
+        elif sigla[cont3] == x:
+            listaSigla.append(sigla[cont3])
+            cont3 +=1
+        elif nome[cont4] == x:
+            listaNome.append(nome[cont4])
+            cont4 += 1
+
+    listaFinal = []
+    if nomeRecebido == listaComum or listaSlug or listaSigla or listaNome:
+        listaFinal.append(dados['equipes']['id'])
+        return listaFinal
 '''
 8. Agora, a ideia é receber a id de um time e retornar as
 ids de todos os jogos em que ele participou.
 '''
 def ids_de_jogos_de_um_time(dados,time_id):
-    pass
+    for x in dados['fases']['2700']['jogos']['id']['time1']:
+        print(x)
+        if (time_id == x):
+            return x['fases']['2700']['jogos']['id']
 
+
+x = ids_de_jogos_de_um_time(dados2018, 26)
+print(x)
 '''
 9. Usando as ids dos jogos em que um time participou, podemos 
 descobrir em que dias ele jogou.
