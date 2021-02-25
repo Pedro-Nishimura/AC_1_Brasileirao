@@ -51,10 +51,10 @@ class TestClientes(unittest.TestCase):
         self.assertTrue(t1 in ['Flamengo', 'América-MG'])
         self.assertTrue(t2 in ['Flamengo', 'América-MG'])
 
-   # def test_07_id_do_time(self):
-       # dados = pega_dados()
-       # self.assertEqual(brasileirao.id_do_time(dados, 'Cruzeiro'), '9')
-       # self.assertEqual(brasileirao.id_do_time(dados, 'Athletico'), '3')
+    def test_07_id_do_time(self):
+        dados = pega_dados()
+        self.assertEqual(brasileirao.id_do_time(dados, 'Cruzeiro'), '9')
+        self.assertEqual(brasileirao.id_do_time(dados, 'Athletico'), '3')
 
     def test_08_busca_imprecisa_por_nome_de_time(self):
         dados = pega_dados()
